@@ -23,4 +23,10 @@ public class StringCalculatorKataTest {
         assertEquals(20, stringCalculatorKata.add("20"));
         assertEquals(300, stringCalculatorKata.add("300"));
     }
+
+    @Test
+    public void getTheSumOfXAndY() {
+        assertEquals(4, stringCalculatorKata.add("1,3"));
+        assertEquals(51, stringCalculatorKata.add("21,30"));
+    }
 }
