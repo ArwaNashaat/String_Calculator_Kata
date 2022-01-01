@@ -1,18 +1,54 @@
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class StringCalculatorKata {
 
+    String delimiter = "[,\n]";
+    String numbersString;
 
-    public int add(String numbersStringWithCommas) {
-        final String delimiter = "[,\n]";
+    public int add(String numbersString) {
+        setNumbersString(numbersString);
 
-        if (isEmpty(numbersStringWithCommas))
+        if (isNumbersStringEmpty())
             return 0;
 
-        String[] numbers = numbersStringWithCommas.split(delimiter);
+        if (numbersString.startsWith("//")) {
+            delimiter = updateDelimiter();
+            numbersString = subStringFromBeginningOfTheStringTillNewLine();
+        }
+
+        String[] numbers = numbersString.split(delimiter);
         return getSumOf(numbers);
     }
 
-    private boolean isEmpty(String numbersStringWithCommas) {
-        return numbersStringWithCommas.equals("");
+    private void setNumbersString(String numbersString) {
+        this.numbersString = numbersString;
+    }
+
+    private boolean isNumbersStringEmpty() {
+        return numbersString.equals("");
+    }
+
+    private Matcher getMatcher() {
+        String customDelimiterPattern = "//(.)\n(.*)";
+
+        return Pattern.compile(customDelimiterPattern).matcher(numbersString);
+    }
+
+    private String updateDelimiter() {
+        Matcher matcher = getMatcher();
+        if (matcher.matches())
+            return matcher.group(1);
+        return "";
+    }
+
+    private String subStringFromBeginningOfTheStringTillNewLine() {
+        Matcher matcher = getMatcher();
+
+        if (matcher.matches())
+            return matcher.group(2);
+
+        return "";
     }
 
     private int getSumOf(String[] numbers) {

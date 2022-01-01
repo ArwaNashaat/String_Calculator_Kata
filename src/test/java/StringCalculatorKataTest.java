@@ -55,6 +55,10 @@ public class StringCalculatorKataTest {
 
         numberFormatException = assertThrows(NumberFormatException.class, () -> stringCalculatorKata.add(",,"));
         assertEquals("For input string: \",\"", numberFormatException.getMessage());
+    }
 
+    @Test
+    public void getTheSumOfTwoNumbersWhenTheDefaultDelimiterIsSemicolon() {
+        assertEquals(5, stringCalculatorKata.add("//;\n2;3"));
     }
 }
