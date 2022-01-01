@@ -3,8 +3,8 @@ import java.util.regex.Pattern;
 
 public class StringCalculatorKata {
 
-    String delimiter = "[,\n]";
-    String numbersString;
+    private String delimiter = "[,\n]";
+    private String numbersString;
 
     public int add(String numbersString) {
         setNumbersString(numbersString);
