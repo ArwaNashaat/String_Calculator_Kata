@@ -6,7 +6,7 @@ public class StringCalculatorKata {
     private String delimiter = "[,\n]";
     private String numbersString;
 
-    public int add(String numbersString) {
+    public int add(String numbersString) throws Exception {
         setNumbersString(numbersString);
 
         if (isNumbersStringEmpty())
@@ -51,12 +51,17 @@ public class StringCalculatorKata {
         return "";
     }
 
-    private int getSumOf(String[] numbers) {
+    private int getSumOf(String[] numbers) throws Exception {
         if (numbers.length == 0)
             throw new NumberFormatException("For input string: \",\"");
         int sum = 0;
-        for (String number : numbers)
+        for (String number : numbers) {
+            int numberInt = Integer.parseInt(number);
+            if (numberInt < 0)
+                throw new Exception("negatives not allowed");
             sum += Integer.parseInt(number);
+
+        }
         return sum;
     }
 }

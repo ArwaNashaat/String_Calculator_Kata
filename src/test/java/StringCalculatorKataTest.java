@@ -13,37 +13,37 @@ public class StringCalculatorKataTest {
     }
 
     @Test
-    public void emptyStringReturnZero() {
+    public void emptyStringReturnZero() throws Exception {
         assertEquals(0, stringCalculatorKata.add(""));
     }
 
     @Test
-    public void oneNumberReturnsTheSameNumber() {
+    public void oneNumberReturnsTheSameNumber() throws Exception {
         assertEquals(1, stringCalculatorKata.add("1"));
         assertEquals(20, stringCalculatorKata.add("20"));
         assertEquals(300, stringCalculatorKata.add("300"));
     }
 
     @Test
-    public void sumOfTwoNumbers_CommaDelimiter() {
+    public void sumOfTwoNumbers_CommaDelimiter() throws Exception {
         assertEquals(4, stringCalculatorKata.add("1,3"));
         assertEquals(51, stringCalculatorKata.add("21,30"));
     }
 
     @Test
-    public void sumOfMoreThanTwoNumbers_CommaDelimiter() {
+    public void sumOfMoreThanTwoNumbers_CommaDelimiter() throws Exception {
         assertEquals(20, stringCalculatorKata.add("1,3,6,10"));
         assertEquals(51, stringCalculatorKata.add("21,30,0"));
         assertEquals(67, stringCalculatorKata.add("21,30,10,5,1"));
     }
 
     @Test
-    public void sumOfTwoNumbers_NewLineDelimiter() {
+    public void sumOfTwoNumbers_NewLineDelimiter() throws Exception {
         assertEquals(5, stringCalculatorKata.add("2\n3"));
     }
 
     @Test
-    public void sumOfMoreThanTwoNumbers_CommaAndNewLineDelimiter() {
+    public void sumOfMoreThanTwoNumbers_CommaAndNewLineDelimiter() throws Exception {
         assertEquals(11, stringCalculatorKata.add("2\n3,6"));
         assertEquals(12, stringCalculatorKata.add("2,3\n6\n1"));
     }
@@ -58,7 +58,13 @@ public class StringCalculatorKataTest {
     }
 
     @Test
-    public void sumOfTwoNumbers_SemicolonDelimiter() {
+    public void sumOfTwoNumbers_SemicolonDelimiter() throws Exception {
         assertEquals(5, stringCalculatorKata.add("//;\n2;3"));
+    }
+
+    @Test
+    public void sumOfOneNegativeNumberWithOnePositiveNumber() {
+        Exception exception = assertThrows(Exception.class, ()-> stringCalculatorKata.add("-5,9"));
+        assertEquals("negatives not allowed", exception.getMessage());
     }
 }
