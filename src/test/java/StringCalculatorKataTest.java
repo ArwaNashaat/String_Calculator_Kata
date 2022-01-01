@@ -38,29 +38,22 @@ public class StringCalculatorKataTest {
     }
 
     @Test
-    public void throwNumberFormatExceptionWhenANewLineIsLast() {
-        NumberFormatException numberFormatException = assertThrows(NumberFormatException.class, () -> stringCalculatorKata.add("1,\n"));
-
-        assertEquals("For input string: \"\n\"", numberFormatException.getMessage());
-    }
-
-    @Test
-    public void getTheSumOfXAAndYSSeparatedByCommaAndNewLine() {
-        assertEquals(5, stringCalculatorKata.add("2\n,3"));
+    public void getTheSumOfTwoNumbersNewLineSeparatedOnly() {
+        assertEquals(5, stringCalculatorKata.add("2\n3"));
     }
 
     @Test
     public void getTheSumOfMoreThanTwoNumbersSeparatedByCommaAndNewLine() {
-        assertEquals(11, stringCalculatorKata.add("2\n,3\n,6"));
-        assertEquals(12, stringCalculatorKata.add("2\n,3\n,6\n,1"));
+        assertEquals(11, stringCalculatorKata.add("2\n3,6"));
+        assertEquals(12, stringCalculatorKata.add("2,3\n6\n1"));
     }
 
     @Test
     public void throwNumberFormatExceptionWhenTheStringContainsCommaOnly() {
-        NumberFormatException numberFormatException = assertThrows(NumberFormatException.class, ()-> stringCalculatorKata.add(","));
+        NumberFormatException numberFormatException = assertThrows(NumberFormatException.class, () -> stringCalculatorKata.add(","));
         assertEquals("For input string: \",\"", numberFormatException.getMessage());
 
-        numberFormatException = assertThrows(NumberFormatException.class, ()-> stringCalculatorKata.add(",,"));
+        numberFormatException = assertThrows(NumberFormatException.class, () -> stringCalculatorKata.add(",,"));
         assertEquals("For input string: \",\"", numberFormatException.getMessage());
 
     }
