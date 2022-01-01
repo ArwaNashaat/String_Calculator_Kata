@@ -4,7 +4,8 @@ public class StringCalculatorKata {
         if (isEmpty(numbersStringWithCommas))
             return 0;
 
-        String[] numbers = numbersStringWithCommas.split(",");
+        String comaOrNewLineFollowedByComa = "(\n,|,)";
+        String[] numbers = numbersStringWithCommas.split(comaOrNewLineFollowedByComa);
         return getSumOf(numbers);
     }
 

@@ -25,13 +25,13 @@ public class StringCalculatorKataTest {
     }
 
     @Test
-    public void getTheSumOfXAndY() {
+    public void getTheSumOfXAndYSeparatedByCommaOnly() {
         assertEquals(4, stringCalculatorKata.add("1,3"));
         assertEquals(51, stringCalculatorKata.add("21,30"));
     }
 
     @Test
-    public void getTheSumOfMoreThanTwoNumbers() {
+    public void getTheSumOfMoreThanTwoNumbersSeparatedByCommaOnly() {
         assertEquals(20, stringCalculatorKata.add("1,3,6,10"));
         assertEquals(51, stringCalculatorKata.add("21,30,0"));
         assertEquals(67, stringCalculatorKata.add("21,30,10,5,1"));
@@ -42,5 +42,10 @@ public class StringCalculatorKataTest {
         NumberFormatException numberFormatException = assertThrows(NumberFormatException.class, () -> stringCalculatorKata.add("1,\n"));
 
         assertEquals("For input string: \"\n\"", numberFormatException.getMessage());
+    }
+
+    @Test
+    public void getTheSumOfXAAndYSSeparatedByCommaAndNewLine() {
+        assertEquals(5, stringCalculatorKata.add("2\n,3"));
     }
 }
