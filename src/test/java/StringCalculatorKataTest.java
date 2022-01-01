@@ -54,4 +54,14 @@ public class StringCalculatorKataTest {
         assertEquals(11, stringCalculatorKata.add("2\n,3\n,6"));
         assertEquals(12, stringCalculatorKata.add("2\n,3\n,6\n,1"));
     }
+
+    @Test
+    public void throwNumberFormatExceptionWhenTheStringContainsCommaOnly() {
+        NumberFormatException numberFormatException = assertThrows(NumberFormatException.class, ()-> stringCalculatorKata.add(","));
+        assertEquals("For input string: \",\"", numberFormatException.getMessage());
+
+        numberFormatException = assertThrows(NumberFormatException.class, ()-> stringCalculatorKata.add(",,"));
+        assertEquals("For input string: \",\"", numberFormatException.getMessage());
+
+    }
 }

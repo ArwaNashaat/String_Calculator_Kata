@@ -14,6 +14,8 @@ public class StringCalculatorKata {
     }
 
     private int getSumOf(String[] numbers) {
+        if(numbers.length==0)
+            throw new NumberFormatException("For input string: \",\"");
         int sum = 0;
         for (String number : numbers)
             sum += Integer.parseInt(number);
