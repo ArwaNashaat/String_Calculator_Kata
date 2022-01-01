@@ -29,10 +29,18 @@ public class StringCalculatorKataTest {
         assertEquals(4, stringCalculatorKata.add("1,3"));
         assertEquals(51, stringCalculatorKata.add("21,30"));
     }
+
     @Test
     public void getTheSumOfMoreThanTwoNumbers() {
         assertEquals(20, stringCalculatorKata.add("1,3,6,10"));
         assertEquals(51, stringCalculatorKata.add("21,30,0"));
         assertEquals(67, stringCalculatorKata.add("21,30,10,5,1"));
+    }
+
+    @Test
+    public void throwNumberFormatExceptionWhenANewLineIsLast() {
+        NumberFormatException numberFormatException = assertThrows(NumberFormatException.class, () -> stringCalculatorKata.add("1,\n"));
+
+        assertEquals("For input string: \"\n\"", numberFormatException.getMessage());
     }
 }
