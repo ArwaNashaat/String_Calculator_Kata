@@ -48,4 +48,10 @@ public class StringCalculatorKataTest {
     public void getTheSumOfXAAndYSSeparatedByCommaAndNewLine() {
         assertEquals(5, stringCalculatorKata.add("2\n,3"));
     }
+
+    @Test
+    public void getTheSumOfMoreThanTwoNumbersSeparatedByCommaAndNewLine() {
+        assertEquals(11, stringCalculatorKata.add("2\n,3\n,6"));
+        assertEquals(12, stringCalculatorKata.add("2\n,3\n,6\n,1"));
+    }
 }
