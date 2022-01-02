@@ -24,6 +24,7 @@ public class StringCalculatorKataTest {
         assertEquals(300, stringCalculatorKata.add("300"));
     }
 
+    //Underscore breaks the java convention for the functions, but it's more readable this way...
     @Test
     public void sumOfTwoNumbers_CommaDelimiter() throws Exception {
         assertEquals(4, stringCalculatorKata.add("1,3"));
@@ -60,6 +61,12 @@ public class StringCalculatorKataTest {
     @Test
     public void sumOfTwoNumbers_SemicolonDelimiter() throws Exception {
         assertEquals(5, stringCalculatorKata.add("//;\n2;3"));
+    }
+
+    @Test
+    public void getTheSumOfXSemicolonY_AndAfter_GetTheSumOfXCommaY() throws Exception {
+        assertEquals(5, stringCalculatorKata.add("//;\n2;3"));
+        assertEquals(5, stringCalculatorKata.add("2,3"));
     }
 
     @Test

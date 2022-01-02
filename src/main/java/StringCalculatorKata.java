@@ -4,11 +4,11 @@ import java.util.regex.Pattern;
 
 public class StringCalculatorKata {
 
-    private String delimiter = "[,\n]";
+    private String delimiter;
     private String numbersString;
 
     public int add(String numbersString) throws Exception {
-        this.numbersString = numbersString;
+        setDefaultDelimiterAndNumbersStringWith(numbersString);
 
         if (isNumbersStringEmpty())
             return 0;
@@ -20,6 +20,11 @@ public class StringCalculatorKata {
         throwExceptionGivenWrongFormatOf(numbers);
 
         return getSumOf(numbers);
+    }
+
+    private void setDefaultDelimiterAndNumbersStringWith(String numbersString) {
+        this.numbersString = numbersString;
+        delimiter = "[,\n]";
     }
 
     private boolean isNumbersStringEmpty() {
