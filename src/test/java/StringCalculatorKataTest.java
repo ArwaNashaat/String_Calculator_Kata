@@ -63,8 +63,11 @@ public class StringCalculatorKataTest {
     }
 
     @Test
-    public void sumOfOneNegativeNumberWithOnePositiveNumber() {
-        Exception exception = assertThrows(Exception.class, ()-> stringCalculatorKata.add("-5,9"));
-        assertEquals("negatives not allowed", exception.getMessage());
+    public void throwExceptionGivenNegativeNumbers() {
+        Exception exception = assertThrows(Exception.class, () -> stringCalculatorKata.add("-5,9"));
+        assertEquals("negatives not allowed:[-5]", exception.getMessage());
+
+        exception = assertThrows(Exception.class, () -> stringCalculatorKata.add("-5,-9"));
+        assertEquals("negatives not allowed:[-5, -9]", exception.getMessage());
     }
 }
