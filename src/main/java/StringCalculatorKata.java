@@ -10,7 +10,7 @@ public class StringCalculatorKata {
     public int add(String numbersString) throws Exception {
         setDefaultDelimiterAndNumbersStringWith(numbersString);
 
-        if (isNumbersStringEmpty())
+        if (numbersString.isEmpty())
             return 0;
 
         if (numbersString.startsWith("//"))
@@ -25,10 +25,6 @@ public class StringCalculatorKata {
     private void setDefaultDelimiterAndNumbersStringWith(String numbersString) {
         this.numbersString = numbersString;
         delimiter = "[,\n]";
-    }
-
-    private boolean isNumbersStringEmpty() {
-        return numbersString.length() == 0;
     }
 
     private String getNumbersStringGivenCustomDelimiter() {
