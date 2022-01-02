@@ -5,31 +5,35 @@ import java.util.regex.Pattern;
 public class StringCalculatorKata {
 
     private String delimiter;
-    private String numbersString;
+    private String string;
 
-    public int add(String numbersString) throws Exception {
-        setDefaultDelimiterAndNumbersStringWith(numbersString);
+    public int add(String string) throws Exception {
+        setDefaultDelimiterAndStringWith(string);
 
-        if (numbersString.isEmpty())
+        if (string.isEmpty())
             return 0;
 
-        if (numbersString.startsWith("//")) {
-            delimiter = updateDelimiter();
-            numbersString = removeTheDefinitionOfTheNewDelimiterFromNumbersString();
-        }
+        updateClassFieldsIfCustomDelimiter();
 
-        String[] numbers = numbersString.split(delimiter);
+        String[] numbers = this.string.split(delimiter);
         throwExceptionGivenWrongFormatOf(numbers);
 
-        return getSumOf(numbers);
+        return getSumOfNumbersSmallerThan1001(numbers);
     }
 
-    private void setDefaultDelimiterAndNumbersStringWith(String numbersString) {
-        this.numbersString = numbersString;
+    private void updateClassFieldsIfCustomDelimiter() {
+        if (string.startsWith("//")) {
+            delimiter = updateDelimiter();
+            string = removeTheDefinitionOfTheCustomDelimiter();
+        }
+    }
+
+    private void setDefaultDelimiterAndStringWith(String string) {
+        this.string = string;
         delimiter = "[,\n]";
     }
 
-    private String removeTheDefinitionOfTheNewDelimiterFromNumbersString() {
+    private String removeTheDefinitionOfTheCustomDelimiter() {
         Matcher matcher = getMatcher();
 
         if (matcher.matches())
@@ -39,11 +43,11 @@ public class StringCalculatorKata {
     }
 
     private void throwExceptionGivenWrongFormatOf(String[] numbers) throws Exception {
-        throwExceptionGivenInputHasCommaOnly(numbers);
+        throwExceptionGivenStringHasCommaOnly(numbers);
         throwExceptionGivenNegativesIn(numbers);
     }
 
-    private void throwExceptionGivenInputHasCommaOnly(String[] numbers) {
+    private void throwExceptionGivenStringHasCommaOnly(String[] numbers) {
         if (numbers.length == 0)
             throw new NumberFormatException("For input string: \",\"");
     }
@@ -59,7 +63,7 @@ public class StringCalculatorKata {
     private Matcher getMatcher() {
         String customDelimiterPattern = "//(.)\n(.*)";
 
-        return Pattern.compile(customDelimiterPattern).matcher(numbersString);
+        return Pattern.compile(customDelimiterPattern).matcher(string);
     }
 
     private String updateDelimiter() {
@@ -69,12 +73,23 @@ public class StringCalculatorKata {
         return "";
     }
 
+    private int getSumOfNumbersSmallerThan1001(String[] numbers) {
+        String[] numberSmallerThan1001 = getNumbersSmallerThan1001(numbers);
+        return getSumOf(numberSmallerThan1001);
+    }
+
+    private String[] getNumbersSmallerThan1001(String[] numbers) {
+        return Arrays.stream(numbers)
+                .filter(i -> Integer.parseInt(i) < 1000 && Integer.parseInt(i) >= 0)
+                .toArray(String[]::new);
+    }
+
     private int getSumOf(String[] numbers) {
         int sum = 0;
-        for (String number : numbers) {
+
+        for (String number : numbers)
             sum += Integer.parseInt(number);
 
-        }
         return sum;
     }
 }

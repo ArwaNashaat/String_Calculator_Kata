@@ -77,4 +77,9 @@ public class StringCalculatorKataTest {
         exception = assertThrows(Exception.class, () -> stringCalculatorKata.add("-5,-9"));
         assertEquals("negatives not allowed:[-5, -9]", exception.getMessage());
     }
+
+    @Test
+    public void doNotSumNumbersAbove1000() throws Exception {
+        assertEquals(2, stringCalculatorKata.add("2,1001,20000"));
+    }
 }
