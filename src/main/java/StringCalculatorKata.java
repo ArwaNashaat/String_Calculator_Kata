@@ -13,8 +13,10 @@ public class StringCalculatorKata {
         if (numbersString.isEmpty())
             return 0;
 
-        if (numbersString.startsWith("//"))
-            numbersString = getNumbersStringGivenCustomDelimiter();
+        if (numbersString.startsWith("//")) {
+            delimiter = updateDelimiter();
+            numbersString = removeTheDefinitionOfTheNewDelimiterFromNumbersString();
+        }
 
         String[] numbers = numbersString.split(delimiter);
         throwExceptionGivenWrongFormatOf(numbers);
@@ -27,11 +29,13 @@ public class StringCalculatorKata {
         delimiter = "[,\n]";
     }
 
-    private String getNumbersStringGivenCustomDelimiter() {
-        String numbersString;
-        delimiter = updateDelimiter();
-        numbersString = subStringFromBeginningOfTheStringTillNewLine();
-        return numbersString;
+    private String removeTheDefinitionOfTheNewDelimiterFromNumbersString() {
+        Matcher matcher = getMatcher();
+
+        if (matcher.matches())
+            return matcher.group(2);
+
+        return "";
     }
 
     private void throwExceptionGivenWrongFormatOf(String[] numbers) throws Exception {
@@ -62,15 +66,6 @@ public class StringCalculatorKata {
         Matcher matcher = getMatcher();
         if (matcher.matches())
             return matcher.group(1);
-        return "";
-    }
-
-    private String subStringFromBeginningOfTheStringTillNewLine() {
-        Matcher matcher = getMatcher();
-
-        if (matcher.matches())
-            return matcher.group(2);
-
         return "";
     }
 
