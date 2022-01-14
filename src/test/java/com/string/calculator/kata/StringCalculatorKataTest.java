@@ -1,5 +1,8 @@
+package com.string.calculator.kata;
+
 import static org.junit.jupiter.api.Assertions.*;
 
+import com.string.calculator.kata.StringCalculatorKata;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
