@@ -13,7 +13,6 @@ public class StringCalculatorKata {
         if (string.isEmpty())
             return 0;
 
-        // change it to "updateDelimiterAndString"?
         updateClassFieldsIfCustomDelimiter();
 
         String[] numbers = this.string.split(delimiter);
@@ -48,7 +47,6 @@ public class StringCalculatorKata {
         throwExceptionGivenNegativesIn(numbers);
     }
 
-    // A function that lies
     private void throwExceptionGivenStringHasCommaOnly(String[] numbers) {
         if (numbers.length == 0)
             throw new NumberFormatException("For input string: \",\"");
