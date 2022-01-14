@@ -82,4 +82,10 @@ public class StringCalculatorKataTest {
     public void doNotSumNumbersAbove1000() throws Exception {
         assertEquals(2, stringCalculatorKata.add("2,1001,20000"));
     }
+
+    @Test
+    public void throwExceptionWhenCustomDelimiterDoesNotFollowTheFormat() {
+        Exception exception = assertThrows(Exception.class, ()-> stringCalculatorKata.add("//;;\n5;;3"));
+        assertEquals("Invalid Delimiter", exception.getMessage());
+    }
 }

@@ -13,6 +13,7 @@ public class StringCalculatorKata {
         if (string.isEmpty())
             return 0;
 
+        // change it to "updateDelimiterAndString"?
         updateClassFieldsIfCustomDelimiter();
 
         String[] numbers = this.string.split(delimiter);
@@ -21,7 +22,7 @@ public class StringCalculatorKata {
         return getSumOfNumbersSmallerThan1001(numbers);
     }
 
-    private void updateClassFieldsIfCustomDelimiter() {
+    private void updateClassFieldsIfCustomDelimiter() throws Exception {
         if (string.startsWith("//")) {
             delimiter = updateDelimiter();
             string = removeTheDefinitionOfTheCustomDelimiter();
@@ -47,6 +48,7 @@ public class StringCalculatorKata {
         throwExceptionGivenNegativesIn(numbers);
     }
 
+    // A function that lies
     private void throwExceptionGivenStringHasCommaOnly(String[] numbers) {
         if (numbers.length == 0)
             throw new NumberFormatException("For input string: \",\"");
@@ -62,15 +64,15 @@ public class StringCalculatorKata {
 
     private Matcher getMatcher() {
         String customDelimiterPattern = "//(.)\n(.*)";
-
         return Pattern.compile(customDelimiterPattern).matcher(string);
     }
 
-    private String updateDelimiter() {
+    private String updateDelimiter() throws Exception {
         Matcher matcher = getMatcher();
-        if (matcher.matches())
+        if (matcher.matches()) {
             return matcher.group(1);
-        return "";
+        }
+        throw new Exception("Invalid Delimiter");
     }
 
     private int getSumOfNumbersSmallerThan1001(String[] numbers) {
