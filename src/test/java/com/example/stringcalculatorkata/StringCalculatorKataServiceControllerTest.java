@@ -17,7 +17,7 @@ public class StringCalculatorKataServiceControllerTest {
     }
 
     @Test
-    public void hitAddAPIWillReturnTheSumOfTwoNumbers() {
+    public void hitAddAPIWillReturnTheSumOfMultipleNumbers() {
         given().
                 body("1,3,6,10").
                 when().
