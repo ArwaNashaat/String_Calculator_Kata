@@ -19,13 +19,12 @@ public class StringCalculatorKataServiceControllerTest {
     @Test
     public void hitAddAPIWillReturnTheSumOfTwoNumbers() {
         given().
-                header("Content-type", "application/json").
-                and().
                 body("1,3,6,10").
                 when().
                 post("/add").
                 then().
                 statusCode(200).
-                body("add.sum",equalTo(Integer.parseInt(String.valueOf(20))));
+                and().
+                body("add.sum",equalTo(Integer.parseInt("20")));
     }
 }

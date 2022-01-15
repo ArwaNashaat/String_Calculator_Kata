@@ -14,7 +14,7 @@ public class StringCalculatorKataController {
         this.stringCalculatorKataService = stringCalculatorKataService;
     }
 
-    @PostMapping(value="/add", consumes= MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value="/add", produces = MediaType.APPLICATION_JSON_VALUE)
     public String add(@RequestBody String string) throws Exception {
         int sum = stringCalculatorKataService.add(string);
         return formJsonResponse(sum);
