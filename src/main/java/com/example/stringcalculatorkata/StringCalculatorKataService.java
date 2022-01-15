@@ -1,10 +1,13 @@
-package com.string.calculator.kata;
+package com.example.stringcalculatorkata;
+
+import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class StringCalculatorKata {
+@Service
+public class StringCalculatorKataService {
 
     private String delimiter;
     private String string;
