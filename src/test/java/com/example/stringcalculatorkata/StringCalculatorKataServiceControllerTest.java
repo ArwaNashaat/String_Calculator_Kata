@@ -17,7 +17,7 @@ public class StringCalculatorKataServiceControllerTest {
     }
 
     @Test
-    public void hitAddAPIWillReturnTheSumOfMultipleNumbers() {
+    public void hitAddAPIWithMultipleNumbersWillReturnTheSumOfThem() {
         given().
                 body("1,3,6,10").
                 when().
@@ -26,5 +26,17 @@ public class StringCalculatorKataServiceControllerTest {
                 statusCode(200).
                 and().
                 body("add.sum",equalTo(Integer.parseInt("20")));
+    }
+
+    @Test
+    public void hitAddAPIWithEmptyBodyWillReturnZero() {
+        given().
+                body("").
+                when().
+                post("/add").
+                then().
+                statusCode(200).
+                and().
+                body("add.sum",equalTo(Integer.parseInt("0")));
     }
 }

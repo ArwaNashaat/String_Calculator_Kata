@@ -14,10 +14,17 @@ public class StringCalculatorKataController {
         this.stringCalculatorKataService = stringCalculatorKataService;
     }
 
-    @PostMapping(value="/add", produces = MediaType.APPLICATION_JSON_VALUE)
-    public String add(@RequestBody String string) throws Exception {
+    @PostMapping(value = "/add", produces = MediaType.APPLICATION_JSON_VALUE)
+    public String add(@RequestBody(required = false) String string) throws Exception {
+        string = convertStringToEmptyIfNull(string);
         int sum = stringCalculatorKataService.add(string);
         return formJsonResponse(sum);
+    }
+
+    private String convertStringToEmptyIfNull(String string) {
+        if(string ==null)
+            string = "";
+        return string;
     }
 
     private String formJsonResponse(int sum) {
